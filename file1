@@ -1,2 +1,3 @@
 Git uses a three-tree architecture
 It still has the repository and the working copy, but in between is another tree, which is the staging index. When we made our first commit, we didn't just perform a commit. First, we used the add command. We added, then we committed
+Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency
