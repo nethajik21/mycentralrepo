@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book Movie Tickets</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" >
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <style>
+            .bgcolor{
+                height:40px;
+                color:white;
+                padding:8px;
+                font-size: 13px;
+            }
+            .bglinkcolor{
+                height:40px;
+                color:white;
+                padding:8px;
+                background-color: black; 
+                font-size: 13px;
+            }
+            .a-option {
+                text-decoration: none;
+                color:white;
+            }
+            .a-option:hover{
+                color:yellow;
+            }
+            button{
+                height:40px;
+                width:150px;
+            }
+
+        </style>
+        <script>
+            var moviesList = ["Virupaksha (A)", "Evil Dead Rise (A)", "Agent (U/A)", "Suzume (U/A)"];
+            
+            var cinemaList1 = ["Select Cinema", "PVR: VR Bengaluru,Whitefield", "PVR: Aura Park Square,Bengaluru", "Sri Vinayaka Marathahalli 4k A/C Dolby Atmos",  "Cinepolis: Nexus Shantiniketan,Bengaluru", "INOX: Nexus,Whitefield"];
+            var cinemaList2 = ["Select Cinema", "PVR: VR Bengaluru,Whitefield", "PVR: Aura Park Square,Bengaluru", "INOX: Galleria Mall, Yelahanka",  "PVR: Directors Cut,REX Walk Bengaluru", "PVR:The Cinema GT World,Bengaluru"];
+            var cinemaList3 = ["Select Cinema", "PVR:Gold,Nexus (Formerely Forum), Koramangala"];
+            var cinemaListEl = [];
+            
+            var dateList1 = ["Select Date", "TUESDAY 25th April", "WEDNESDAY 26th April", "THRUSDAY 27th April"];
+            var dateList2 = ["Select Date", "TUESDAY 25th April", "WEDNESDAY 26th April", "THRUSDAY 27th April", "FRIDAY 28th April"];
+            var dateListEl = [];
+
+            var timeList1 = ["Select Timing", "05:05 PM Telugu [KIDDLES]"];
+            var timeList2 = ["Select Timing", "09:45 AM English", "12:20 PM Telugu", "08:20 PM Japanese"];
+            var timeListEl = [];
+
+            var seatList = ["Select Seats", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+            var seatListEl = [];
+
+            function loadMovies(){
+                var movieCategories = document.getElementById("movieCategories");
+                
+                for(var items of moviesList) {
+                    var option = document.createElement("option");
+                    option.text = items;
+                    option.value = items;
+                    movieCategories.appendChild(option);
+                }
+            }
+            
+            function loadCinema(){
+                var cinemaCategories = document.getElementById("cinemaCategories");
+                
+                cinemaCategories.innerHTML = "";
+                
+                for(var items of cinemaListEl) {
+                    var option = document.createElement("option");
+                    option.text = items;
+                    option.value = items;
+                    cinemaCategories.appendChild(option);
+                }
+            }
+
+            function loadDate(){
+                var dateCategories = document.getElementById("dateCategories");
+                
+                dateCategories.innerHTML = "";
+                
+                for(var items of dateListEl) {
+                    var option = document.createElement("option");
+                    option.text = items;
+                    option.value = items;
+                    dateCategories.appendChild(option);
+                }
+            }
+
+            function loadTime(){
+                var timingCategories = document.getElementById("timingCategories");
+                timingCategories.innerHTML = "";
+                
+                for(var items of timeListEl) {
+                    var option = document.createElement("option");
+                    option.text = items;
+                    option.value = items;
+                    timingCategories.appendChild(option);
+                }
+            }
+
+            function loadSeats(){
+                var seatsCategories = document.getElementById("seatsCategories");
+                seatsCategories.innerHTML = "";
+                
+                for(var items of seatListEl) {
+                    var option = document.createElement("option");
+                    option.text = items;
+                    option.value = items;
+                    seatsCategories.appendChild(option);
+                }
+            }
+
+            function bodyload(){
+                    loadMovies();
+                }
+
+            function categoryChange(){
+                var categoryMovie = document.getElementById("movieCategories").value;
+                
+                switch(categoryMovie){
+                    case "Virupaksha (A)":
+                    cinemaListEl = cinemaList1; 
+                    loadCinema();
+                    break;
+
+                    case "Evil Dead Rise (A)": 
+                    cinemaListEl = cinemaList2; 
+                    loadCinema();
+                    break;
+
+                    case "Agent (U/A)": 
+                    cinemaListEl = cinemaList3; 
+                    loadCinema();
+                    break;
+
+                   
+                    case "Suzume (U/A)": 
+                    cinemaListEl = cinemaList2; 
+                    loadCinema();
+                    break;
+
+                    default: 
+                    cinemaListEl = ["Select Cinema"]; 
+                    loadCinema();
+                    break;
+                }
+            }
+            function categoryCinemaChange(){
+                var categoryDate = document.getElementById("cinemaCategories").value;
+                
+                switch(categoryDate){
+                    case "PVR: VR Bengaluru,Whitefield":
+                    dateListEl = dateList1; 
+                    loadDate();
+                    break;
+
+                    case "PVR: Aura Park Square,Bengaluru":
+                    dateListEl = dateList2; 
+                    loadDate();
+                    break;
+
+                    case "Cinepolis: Nexus Shantiniketan,Bengaluru":
+                    dateListEl = dateList1; 
+                    loadDate();
+                    break;
+
+                    default: 
+                    cinemaListEl = ["Select Date"]; 
+                    loadDate();
+                    break;
+                }
+            }
+            function categoryDateChange(){
+                var categoryTime = document.getElementById("dateCategories").value;
+                
+                switch(categoryTime){
+                    case "TUESDAY 25th April":
+                    timeListEl = timeList1; 
+                    loadTime();
+                    break;
+
+                    case "WEDNESDAY 26th April":
+                    timeListEl = timeList2; 
+                    loadTime();
+                    break;
+
+                    case "THRUSDAY 27th April":
+                    timeListEl = timeList2; 
+                    loadTime();
+                    break;
+
+                    default: 
+                    timeListEl = ["Select Time"]; 
+                    loadTime();
+                    break;
+                }
+            }
+            function categoryTimeChange(){
+                var categorySeat = document.getElementById("timingCategories").value;
+                
+                switch(categorySeat){
+                    case "05:05 PM Telugu [KIDDLES]":
+                    seatListEl = seatList; 
+                    loadSeats();
+                    break;
+
+                    case "09:45 AM English":
+                    seatListEl = seatList; 
+                    loadSeats();
+                    break;
+
+                    case "12:20 PM Telugu":
+                    seatListEl = seatList
+                    loadSeats();
+                    break;
+
+
+                    default: 
+                    seatListEl = ["Select Seats"]; 
+                    loadSeats();
+                    break;
+
+        
+                }
+            }
+            function orderSummary(){
+                document.getElementById("lblMovieName").innerHTML = document.getElementById("movieCategories").value;
+                document.getElementById("lblCinemaName").innerHTML = document.getElementById("cinemaCategories").value;
+                document.getElementById("lblDate").innerHTML = document.getElementById("dateCategories").value;
+                document.getElementById("lblTiming").innerHTML = document.getElementById("timingCategories").value;
+                document.getElementById("lblSeats").innerHTML = document.getElementById("seatsCategories").value;
+                var seatsValue = document.getElementById("seatsCategories").value;
+                var Balance = 300 * parseInt(seatsValue);
+                document.getElementById("lblAmount").innerHTML = `${Balance}`;
+            }
+        </script>
+    </head>
+    <body onload="bodyload()" class="container">
+        <div>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="https://d18hry5vavz86j.cloudfront.net/bannerimages/5fff87a8-b0b4-4f72-b472-17939eee1ba6.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img src="https://d18hry5vavz86j.cloudfront.net/bannerimages/c67c7342-1402-4d52-ba9f-f0c9e3b26027.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img src="https://d18hry5vavz86j.cloudfront.net/bannerimages/d7760a39-d517-416c-a565-af3008205e00.jpg" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        <div>
+            <div class="input-group">
+                <p class="bg bg-danger bgcolor">QUICK BOOKING</p>
+                <span class="bglinkcolor"><a class="a-option" href="#">By Movie</a> | <a class="a-option" href="#">By Cinema</a></span>
+            </div>
+            <div class="bg bg-dark ps-5 pe-5">
+                <div class="d-flex justify-content-center"> 
+                <div class="p-2">
+                    <select onchange="categoryChange()" id="movieCategories" class="form-select bg bg-dark text-white">
+                        <option>Select Movie</option>
+                    </select>
+                </div>
+                <div class="p-2">
+                    <select onchange="categoryCinemaChange()" id="cinemaCategories" class="form-select bg bg-dark text-white">
+                        <option>Select Cinema</option>
+                    </select>
+                </div>
+                <div class="p-2">
+                    <select onchange="categoryDateChange()" id="dateCategories" class="form-select bg bg-dark text-white">
+                        <option>Select Date</option>
+                    </select>
+                </div>
+                <div class="p-2">
+                    <select onchange="categoryTimeChange()" id="timingCategories" class="form-select bg bg-dark text-white">
+                        <option >Select Timing</option>
+                    </select>
+                </div>
+                <div class="p-2">
+                    <select id="seatsCategories" class="form-select bg bg-dark text-white">
+                        <option >Select Seats</option>
+                    </select>
+                </div>
+                <button id="registerButton" onclick="orderSummary()" data-bs-target="#summary" data-bs-toggle="modal" class="btn btn-danger m-2">Book</button>
+                <div class="modal" id="summary">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg bg-dark">
+                                <h3 class="text-white">Your Book Details</h3>
+                                <button class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <dl class="row">
+                                    <dt class="col-5">Movie Name</dt>
+                                    <dl class="col-7" id="lblMovieName"></dl>
+                                    <dt class="col-5">Cinema Name</dt>
+                                    <dl class="col-7" id="lblCinemaName"></dl>
+                                    <dt class="col-5">Date</dt>
+                                    <dl class="col-7" id="lblDate"></dl>
+                                    <dt class="col-5">Timing</dt>
+                                    <dl class="col-7" id="lblTiming"></dl>
+                                    <dt class="col-5">Seats</dt>
+                                    <dl class="col-7" id="lblSeats"></dl>
+                                    <dt class="col-5">Amount</dt>
+                                    <dl class="col-7" id="lblAmount"></dl>
+                                </dl>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </div>
+            
+        </div>
+        <script src ="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
